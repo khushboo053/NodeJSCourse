@@ -1,0 +1,15 @@
+Testing Frameworks: Jestjs, Mochasjs
+
+Why Test?
+Testing is important in the development process because it helps ensure that code works as expected. It helps identify bugs and errors early in the development process, making it easier to fix them. It also
+- To ensure that the code works as expected.  
+- It helps in detecting and fixing bugs early on. 
+- Helps to maintain a high standard of quality for your project's source code.
+
+- saves time 
+- create reliable software
+- gives flexibility to developers
+    - refactoring
+    - collaborating
+    - profiling
+- peace of mind

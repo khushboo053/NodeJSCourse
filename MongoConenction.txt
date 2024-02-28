@@ -1,0 +1,94 @@
+TYPES OF MONGODB CONNECTION
+1) USING CALLBACK
+
+const { MongoClient } = require("mongodb");
+
+const connectionURL = "mongodb://127.0.0.1:27017";
+const databaseName = "task-manager";
+
+MongoClient.connect(
+  connectionURL,
+  { useUnifiedTopology: true },
+  (error, client) => {
+    if (error) {
+      console.log("Unable to connect to the database:", error);
+      return;
+    }
+
+    const db = client.db(databaseName);
+
+    db.collection("users").insertOne(
+      {
+        name: "Khushboo",
+        age: 20,
+      },
+      (error, result) => {
+        if (error) {
+          console.log("Unable to insert user:", error);
+          return;
+        }
+        console.log("User inserted successfully:", result.ops);
+      }
+    );
+  }
+);
+
+
+
+2) USING THEN CATCH
+
+const mongodb = require("mongodb")
+const MongoClient = mongodb.MongoClient
+
+const connectionURL = "mongodb://127.0.0.1:27017";
+const databaseName = "task-manager";
+
+MongoClient.connect(connectionURL, { useUnifiedTopology: true })
+  .then((client) => {
+    const db = client.db(databaseName);
+
+    return db.collection("users").insertOne({
+      name: "Khushboo",
+      age: 20,
+    });
+  })
+  .then((result) => {
+    console.log("Database connected successfully", result.ops);
+  })
+  .catch((error) => {
+    console.log("Unable to connect to the database or insert user:", error);
+  });
+
+
+3) USING TRY-CATCH BLOCK
+
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
+
+const connectionUrl = "mongodb://127.0.0.1:27017";
+const databaseName = "task-manager";
+
+const dbConnect = async () => {
+  const client = new MongoClient(connectionUrl, { useUnifiedTopology: true });
+  try {
+    await client.connect();
+    console.log("Connected Successfully!");
+
+    const db = client.db(databaseName);
+    const collection = db.collection("tasks");
+
+    const result = await collection.insertOne({
+      name: "Gabriel",
+      age: 24,
+    });
+    console.log("Document Inserted Successfully!\n", result);
+  } catch (error) {
+    return console.log("Unable to connect to database ", error);
+  } finally {
+      await client.close();
+    //   console.log('Connection Closed');
+  }
+};
+
+dbConnect();
+

@@ -1,0 +1,28 @@
+This helps to send events & recieve events from both server & client side
+// socket.on -> Server to Client
+// socket.emit -> Client to Server
+
+`socket.emit` is used to send a message from the CLIENT to the SERVER, while `socket.on` is used to listen for and receive messages from the SERVER on the CLIENT side.
+
+// server (emit) -> client (recieve) -> countUpdated
+// client (emit) -> server (recieve) -> increment
+
+
+server (emit) -> client (recieve) --acknowledgement --> server
+client (emit) -> server (recieve) --acknowledgement --> client
+
+Client acknowledgements are useful for real time apps 
+it allows emitter everything actually wins as expected
+
+Event Acknowledgement allows the reciever of the event to acknowledge that it recieved and processed the event.
+
+// socket.emit -  Sends data to this individual socket id only
+    // io.emit- sends data to all connected sockets including the one that sent the message
+    // socket.broadcast.emit- sends data to everyone but the socket that sent the message
+
+    // io.to.emit- used for specific users or rooms
+    // socket.broadcast.to.emit- used for sending to everyone in a room excluding the sender
+
+
+
+In Socket.IO, io.to() is a method used to send messages to specific rooms or namespaces. Socket.IO allows you to organize clients into different rooms, which are essentially channels that clients can join and leave. This feature is useful for scenarios where you want to send messages only to specific groups of clients rather than broadcasting to all connected clients.
